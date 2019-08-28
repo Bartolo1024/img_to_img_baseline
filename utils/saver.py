@@ -3,7 +3,7 @@ import utils
 
 
 class NetSaver(object):
-    def __init__(self, save_period, session_id, train_args={}):
+    def __init__(self, save_period, session_id):
         self.sess_dir = session_id
         self.save_period = save_period
 

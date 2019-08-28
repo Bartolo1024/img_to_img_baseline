@@ -48,7 +48,6 @@ def create_supervised_trainer(model, optimizer, loss_fn):
 @click.argument('model')
 @utils.session
 def main(model, epochs, learning_rate, upscale_factor, save_period, session_id):
-    train_args = {'model': model, 'learning_rate': learning_rate, 'upscale_factor': upscale_factor}
     model = models.get_model(model, upscale_factor=upscale_factor, batch_norms=False)
     dataloader = data.get_dataloader(upscale_factor=upscale_factor)
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
@@ -56,7 +55,7 @@ def main(model, epochs, learning_rate, upscale_factor, save_period, session_id):
     trainer = create_supervised_trainer(model, optimizer, crit)
     trainer.attach(ProgressBar(persist=False))
     trainer.attach(utils.tensorboard_logger.TensorboardLogger(session_id=session_id))
-    trainer.attach(utils.saver.NetSaver(save_period, session_id, train_args=train_args))
+    trainer.attach(utils.saver.NetSaver(save_period, session_id))
     _ = trainer.run(dataloader, max_epochs=epochs)
 
 
