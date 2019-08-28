@@ -1,0 +1,22 @@
+name: supres
+channels:
+  - pytorch
+  - defaults
+dependencies:
+  - click
+  - cudatoolkit=10.0
+  - h5py
+  - hdf5
+  - ignite
+  - numpy
+  - pillow
+  - pip
+  - python=3.7.3
+  - pytorch>=1.2.0
+  - pyyaml
+  - torchvision>=0.4
+  - tqdm
+  - yaml
+  - pip:
+    - future
+    - tb-nightly==1.15.0a20190828
